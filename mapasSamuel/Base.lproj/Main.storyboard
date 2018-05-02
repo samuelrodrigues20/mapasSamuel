@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="mapasSamuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,85 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-jw-447">
+                                <rect key="frame" x="78" y="38" width="141" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9cK-1y-lKl">
+                                <rect key="frame" x="10" y="629" width="355" height="29"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satélite"/>
+                                    <segment title="Hibrido"/>
+                                </segments>
+                                <connections>
+                                    <action selector="clickSegControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="MGB-8E-BwM"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvu-j3-K8R">
+                                <rect key="frame" x="335" y="30" width="30" height="30"/>
+                                <state key="normal" title="Ir"/>
+                                <connections>
+                                    <action selector="butGeocoding:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e2R-KE-67z"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nrh-VH-Enc">
+                                <rect key="frame" x="95" y="197" width="141" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-0t-GfS">
+                                <rect key="frame" x="175" y="30" width="25" height="43.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JJ-2C-fLL">
+                                <rect key="frame" x="166.5" y="68.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kpl-Ji-S9Z">
+                                <rect key="frame" x="10" y="83.5" width="355" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="UKy-XB-FBg"/>
+                                    <constraint firstAttribute="height" constant="500" id="qBx-r3-74k"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ws1-Kw-PUn"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mvu-j3-K8R" secondAttribute="trailing" constant="10" id="2QZ-nj-h3K"/>
+                            <constraint firstItem="kpl-Ji-S9Z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6H2-qH-XQY"/>
+                            <constraint firstAttribute="trailing" secondItem="kpl-Ji-S9Z" secondAttribute="trailing" constant="10" id="8t0-GI-4Pl"/>
+                            <constraint firstAttribute="trailing" secondItem="mvu-j3-K8R" secondAttribute="trailing" constant="10" id="DDC-6b-oEb"/>
+                            <constraint firstItem="9JJ-2C-fLL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ltv-kJ-CTw"/>
+                            <constraint firstItem="IpX-0t-GfS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="OhA-v0-KPI"/>
+                            <constraint firstItem="mvu-j3-K8R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="WYx-hM-aiD"/>
+                            <constraint firstItem="kpl-Ji-S9Z" firstAttribute="top" secondItem="IpX-0t-GfS" secondAttribute="bottom" constant="10" id="Yyi-s8-o4i"/>
+                            <constraint firstItem="kpl-Ji-S9Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="ZvK-Cx-CGn"/>
+                            <constraint firstItem="kpl-Ji-S9Z" firstAttribute="centerX" secondItem="IpX-0t-GfS" secondAttribute="centerX" id="b89-Fb-LJH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9cK-1y-lKl" secondAttribute="bottom" constant="10" id="sAm-4S-TAm"/>
+                            <constraint firstItem="9JJ-2C-fLL" firstAttribute="top" secondItem="IpX-0t-GfS" secondAttribute="bottom" constant="-5" id="tA0-oj-mEc"/>
+                            <constraint firstItem="kpl-Ji-S9Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v9k-K4-ADQ"/>
+                            <constraint firstAttribute="trailing" secondItem="9cK-1y-lKl" secondAttribute="trailing" constant="10" id="xkD-eM-BVG"/>
+                            <constraint firstItem="9cK-1y-lKl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="yBm-dz-1n6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="labelGeo" destination="9JJ-2C-fLL" id="m6M-bn-hxi"/>
+                        <outlet property="mapView" destination="kpl-Ji-S9Z" id="efb-fn-JKN"/>
+                        <outlet property="segmentedControl" destination="9cK-1y-lKl" id="i2z-w4-Awp"/>
+                        <outlet property="textGeo" destination="IpX-0t-GfS" id="7Md-Np-ve7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
 </document>
