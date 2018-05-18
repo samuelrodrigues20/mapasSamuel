@@ -10,7 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController,  MKMapViewDelegate {
+class ViewController: UIViewController,  MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    var locationManager: CLLocationManager = CLLocationManager()
+    var coordinateInMap: CLLocation!
+    var latestLocation: CLLocation!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +99,17 @@ class ViewController: UIViewController,  MKMapViewDelegate {
         }
     }
     
+    
+    @IBAction func ondeEstou(_ sender: UIButton) {
+        locationManager.desiredAccuracy=kCLLocationAccuracyBest
+        locationManager.delegate = self as CLLocationManagerDelegate
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.stopUpdatingLocation()
+    }
+    
+    @IBAction func butDistancia(_ sender: UIButton) {
+        let distanceBetween: CLLocationDistance = latestLocation.distance(from: coordinateInMap)
+    }
     //MARK: geocoding
     
     
@@ -197,6 +213,30 @@ class ViewController: UIViewController,  MKMapViewDelegate {
         return pinView
         
     }
+    
+    
+    //MARK: CLLocationManagerDelegate 
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        latestLocation = locations[locations.count-1]
+        
+        var result = "Latitude" + String(format: "%.4f", latestLocation.coordinate.latitude)
+        
+        result = result + "Longitude " + String(format: "%.4f", latestLocation.coordinate.longitude)
+    //labelGeoc.text = result
+        result = result + "Horizontal Accuracy " + String(format: "%.4f", latestLocation.verticalAccuracy)
+        
+        result = result + "Altitude " + String(format: "%.4f", latestLocation.altitude)
+        
+        result = result + "Vertical Accuracy " + String(format: "%.4f", latestLocation.verticalAccuracy)
+        
+        print(result)
+        
+    
+    }
+    
+    
+    
     
     
     
